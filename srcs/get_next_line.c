@@ -39,5 +39,19 @@ char *extract_line(char **str)
 
 char *get_next_line(int fd)
 {
-	
+	static char *str;
+	int	bytes_read;
+	char buffer[BUFFER_SIZE + 1]
+
+	if(BUFFER_SIZE <= 0 || fd < 0)
+		return(NULL);
+	bytes_read = 1;
+	while(!strchr(str, '\n') && bytes_read > 0)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if(bytes_read < 0)
+			return(NULL);
+		buffer[bytes_read] = '\0';
+		str = ft_strjoin(str, buffer);
+	}
 }
