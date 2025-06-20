@@ -6,10 +6,17 @@
 /*   By: adnajja <adnajja@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:01:56 by adnajja           #+#    #+#             */
-/*   Updated: 2025/06/11 20:02:52 by adnajja          ###   ########.fr       */
+/*   Updated: 2025/06/20 18:23:26 by adnajja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+char	*clean_str(char **str)
+{
+	int	i;
+	char	*str;
+	
+	
+}
 
 char *extract_line(char **str)
 {
@@ -37,6 +44,7 @@ char *extract_line(char **str)
 	return(line);
 }
 
+
 char *get_next_line(int fd)
 {
 	static char *str;
@@ -54,4 +62,6 @@ char *get_next_line(int fd)
 		buffer[bytes_read] = '\0';
 		str = ft_strjoin(str, buffer);
 	}
+	line = extract_line(&str);
+
 }
