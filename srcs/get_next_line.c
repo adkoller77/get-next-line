@@ -10,12 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*clean_str(char **str)
+char	*clean_str(char *str)
 {
+	int	j;
 	int	i;
-	char	*str;
-	
-	
+	char	*line;
+
+	i = 0;
+	if(str == NULL)
+		return(NULL);
+	while(str[i] != '\n' && str[i] != '\0')
+	{
+		i++;
+	}
+	if(str[i] == '\n')
+	{
+		i++;
+		j = 0;
+		while(str[i] != '\0')
+		{
+			line[j] = str[i];
+			i++;
+		}
+		free(str);
+		return(line);
+	}
+	if(str[i] == '\0')
+	{
+		free(str);
+		return(NULL);
+	}
+
 }
 
 char *extract_line(char **str)
