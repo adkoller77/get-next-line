@@ -6,9 +6,12 @@
 /*   By: adnajja <adnajja@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:01:56 by adnajja           #+#    #+#             */
-/*   Updated: 2025/06/20 18:23:26 by adnajja          ###   ########.fr       */
+/*   Updated: 2025/07/09 15:28:33 by adnajja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdlib.h>
+#include "libft.h"
 
 char	*clean_str(char *str)
 {
@@ -26,21 +29,21 @@ char	*clean_str(char *str)
 	if(str[i] == '\n')
 	{
 		i++;
+		line = malloc(sizeof(char) * (strlen(str) - i + 1));
+		if(!line)
+			return(NULL);
 		j = 0;
 		while(str[i] != '\0')
 		{
 			line[j] = str[i];
+			j++;
 			i++;
 		}
 		free(str);
+		str = NULL;
 		return(line);
 	}
-	if(str[i] == '\0')
-	{
-		free(str);
-		return(NULL);
-	}
-
+	return(NULL);
 }
 
 char *extract_line(char **str)
@@ -56,9 +59,12 @@ char *extract_line(char **str)
 	{
 		i++;
 	}
+
 	if ((*str)[i] == '\n')
 		i++;
-	line = malloc(i + 1);
+	line = malloc(sizeof(char) * (i + 1));
+	if(!line)
+		return(NULL);
 	j = 0;
 	while(j < i)
 	{
@@ -72,21 +78,31 @@ char *extract_line(char **str)
 
 char *get_next_line(int fd)
 {
+	char	*line;
 	static char *str;
 	int	bytes_read;
-	char buffer[BUFFER_SIZE + 1]
+	char buffer[BUFFER_SIZE + 1];
 
 	if(BUFFER_SIZE <= 0 || fd < 0)
 		return(NULL);
+	if(!str)
+		str = ft_strdup("");
 	bytes_read = 1;
-	while(!strchr(str, '\n') && bytes_read > 0)
+	while(!ft_strchr(str, '\n') && bytes_read > 0)
 	{
 		bytes_read = read(fd, buffer, BUFFER_SIZE);
 		if(bytes_read < 0)
+		{
+			free(str);
+			str = NULL;
 			return(NULL);
+		}
 		buffer[bytes_read] = '\0';
 		str = ft_strjoin(str, buffer);
+		if(!str)
+			return(NULL);
 	}
 	line = extract_line(&str);
-
+	str = clean_str(str);
+	return(line);
 }
