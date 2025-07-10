@@ -6,7 +6,7 @@
 /*   By: adnajja <adnajja@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 15:42:05 by adnajja           #+#    #+#             */
-/*   Updated: 2025/07/09 21:48:24 by adnajja          ###   ########.fr       */
+/*   Updated: 2025/07/10 19:41:26 by adnajja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,25 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2[i])
 		res[j++] = s2[i++];
 	res[j] = '\0';
+	return (res);
+}
+
+char	*ft_strrchr(const char *s, int c)
+{
+	unsigned int	i;
+	char			*res;
+	char			l;
+
+	i = 0;
+	res = NULL;
+	l = (char)c;
+	while (s[i])
+	{
+		if (s[i] == l)
+			res = (char *)&s[i];
+		i++;
+	}
+	if (s[i] == l)
+		res = (char *)&s[i];
 	return (res);
 }

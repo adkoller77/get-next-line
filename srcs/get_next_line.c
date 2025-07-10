@@ -6,12 +6,12 @@
 /*   By: adnajja <adnajja@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:01:56 by adnajja           #+#    #+#             */
-/*   Updated: 2025/07/09 15:28:33 by adnajja          ###   ########.fr       */
+/*   Updated: 2025/07/10 20:13:33 by adnajja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft.h"
+#include "get_next_line.h"
 
 char	*clean_str(char *str)
 {
