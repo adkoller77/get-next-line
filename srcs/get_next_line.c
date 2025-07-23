@@ -6,11 +6,10 @@
 /*   By: adnajja <adnajja@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:01:56 by adnajja           #+#    #+#             */
-/*   Updated: 2025/07/10 20:13:33 by adnajja          ###   ########.fr       */
+/*   Updated: 2025/07/23 20:25:35 by adnajja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "get_next_line.h"
 
 char	*clean_str(char *str)
@@ -29,7 +28,7 @@ char	*clean_str(char *str)
 	if(str[i] == '\n')
 	{
 		i++;
-		line = malloc(sizeof(char) * (strlen(str) - i + 1));
+		line = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
 		if(!line)
 			return(NULL);
 		j = 0;
@@ -106,3 +105,4 @@ char *get_next_line(int fd)
 	str = clean_str(str);
 	return(line);
 }
+
