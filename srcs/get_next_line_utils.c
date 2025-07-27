@@ -6,7 +6,7 @@
 /*   By: adnajja <adnajja@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 15:42:05 by adnajja           #+#    #+#             */
-/*   Updated: 2025/07/23 22:35:09 by adnajja          ###   ########.fr       */
+/*   Updated: 2025/07/27 16:37:41 by adnajja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *s1)
 	size_t	len;
 	char	*dup;
 
+	if (!s1)
+		return (NULL);
 	dup = 0;
 	i = 0;
 	len = ft_strlen(s1);
@@ -35,28 +37,45 @@ char	*ft_strdup(const char *s1)
 
 char	*ft_strjoin(char *s1, char const *s2)
 {
-	int		i;
-	int		j;
 	char	*res;
+	int		i = 0;
+	int		j = 0;
 
-	i = 0;
-	j = 0;
+	if (!s1)
+	{
+		s1 = malloc(1);
+		if (!s1)
+			return (NULL);
+		s1[0] = '\0';
+	}
+
+	if (!s2)
+		return (NULL);
+
 	res = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!res)
+	{
+		free(s1);
 		return (NULL);
+	}
+
 	while (s1[i])
 		res[j++] = s1[i++];
 	i = 0;
 	while (s2[i])
 		res[j++] = s2[i++];
 	res[j] = '\0';
+
+	free(s1);
 	return (res);
-	free(s1)
 }
 
 char	*ft_strchr(const char *s, int c)
 {
 	size_t	i;
+
+	if (!s)
+		return(NULL);
 
 	i = 0;
 	if ((char)c == '\0')
@@ -75,6 +94,8 @@ size_t	ft_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return(0);
 	while (s[i])
 		i++;
 	return (i);

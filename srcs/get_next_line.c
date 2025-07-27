@@ -6,7 +6,7 @@
 /*   By: adnajja <adnajja@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:01:56 by adnajja           #+#    #+#             */
-/*   Updated: 2025/07/23 20:25:35 by adnajja          ###   ########.fr       */
+/*   Updated: 2025/07/27 16:46:52 by adnajja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*clean_str(char *str)
 	char	*line;
 
 	i = 0;
-	if(str == NULL)
+	if(!str)
 		return(NULL);
 	while(str[i] != '\n' && str[i] != '\0')
 	{
@@ -30,6 +30,7 @@ char	*clean_str(char *str)
 		i++;
 		line = malloc(sizeof(char) * (ft_strlen(str) - i + 1));
 		if(!line)
+			free(line);
 			return(NULL);
 		j = 0;
 		while(str[i] != '\0')
@@ -73,7 +74,6 @@ char *extract_line(char **str)
 	line[j] = '\0';
 	return(line);
 }
-
 
 char *get_next_line(int fd)
 {
