@@ -6,7 +6,7 @@
 /*   By: adnajja <adnajja@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/05 19:01:56 by adnajja           #+#    #+#             */
-/*   Updated: 2025/07/28 23:44:46 by adnajja          ###   ########.fr       */
+/*   Updated: 2025/07/29 16:45:23 by adnajja          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ char	*get_next_line(int fd)
 	int			bytes_read;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	if (!str && !(str == ft_strdup("")))
 		return (NULL);
 	bytes_read = 1;
 	while (!ft_strchr(str, '\n') && bytes_read > 0)
